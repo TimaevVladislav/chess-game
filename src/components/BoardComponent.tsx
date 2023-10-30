@@ -2,22 +2,28 @@ import React, {FC, useEffect, useState} from "react"
 import {Board} from "../models/Board"
 import CellComponent from "./CellComponent"
 import {Cell} from "../models/Cell"
+import {Player} from "../models/Player"
 
 interface IBoardComponentProps {
     board: Board
     setBoard: (board: Board) => void
+    currentPlayer: Player | null
+    changePlayer: () => void
 }
 
-const BoardComponent: FC<IBoardComponentProps> = ({board, setBoard}) => {
+const BoardComponent: FC<IBoardComponentProps> = ({board, setBoard, currentPlayer, changePlayer}) => {
     const [selectedCell, setSelectedCell] = useState<Cell | null>(null)
 
     const selectCell = (cell: Cell): void => {
         if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
            selectedCell.moveFigure(cell)
+           changePlayer()
            setSelectedCell(null)
            updateBoard()
         } else {
-            setSelectedCell(cell)
+            if (cell.figure?.color === currentPlayer?.color) {
+                setSelectedCell(cell)
+            }
         }
     }
 
