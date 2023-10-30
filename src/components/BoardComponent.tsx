@@ -1,7 +1,7 @@
 import React, {FC, useState} from "react"
 import {Board} from "../models/Board"
-import CellComponent from "./CellComponent";
-import {Cell} from "../models/Cell";
+import CellComponent from "./CellComponent"
+import {Cell} from "../models/Cell"
 
 interface IBoardComponentProps {
     board: Board
