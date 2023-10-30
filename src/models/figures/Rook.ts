@@ -16,6 +16,15 @@ export class Rook extends Figure {
     canMove(cell: Cell): boolean {
         if (!super.canMove(cell))
             return false
-        return true
+
+        if (this.cell.isEmptyVertical(cell)) {
+            return true
+        }
+
+        if (this.cell.isEmptyHorizontal(cell)) {
+            return true
+        }
+
+        return false
     }
 }
