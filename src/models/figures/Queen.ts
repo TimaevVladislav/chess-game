@@ -11,6 +11,12 @@ export class Queen extends Figure {
     constructor(color: Colors, cell: Cell) {
         super(color, cell)
         this.logo = color === Colors.white ? whiteQueen : blackQueen
-        this.name = FigureName.Bishop
+        this.name = FigureName.Queen
+    }
+
+    canMove(cell: Cell): boolean {
+        if (!super.canMove(cell))
+            return false
+        return true
     }
 }
